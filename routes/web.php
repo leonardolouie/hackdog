@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/homepage', function () {
+    return view('index');
+})->middleware('auth')->name('index');
+
+Route::get('/table', function () {
+    return view('tables_dynamic');
+})->middleware('auth')->name('table');
