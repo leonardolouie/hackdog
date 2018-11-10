@@ -133,11 +133,11 @@
                   
                     @foreach($responseshow as $response)
                     <th>
-                      <div class="container-fluid alert alert-info text-center responsive" style="height: 200px; width: 130px;">
+                      <div class="container-fluid alert alert-success text-center responsive" style="height: 200px; width: 130px;">
                         <p style="color:green"> START </p>
-                        <p>{{date(" D M/d/Y H:i:s ",$response->start)}}</p>
-                         <p style="color:RED"> FINISH </p>
-                        <p>{{date(" D M/d/Y H:i:s ",$response->finish)}}</p>
+                        <p>{{$from}}</p>
+                         <p style="color:yellow"> FINISH </p>
+                        <p>{{$to}}</p>
                         
                       </div>
                     </th>

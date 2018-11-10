@@ -232,7 +232,7 @@
              <tbody>
                @foreach($response as $response)
                <tr>
-                 <td> <a href="user_details/{{$response->id}}"> <i class="">Show Schedule</i></a></td>
+                 <td> <a href="user_details/{{$response->id}}"> <i class="">Show Details</i></a></td>
 
                  <td>{{$response->name}}</td>
                  <td>{{$response->passcode}}</td>

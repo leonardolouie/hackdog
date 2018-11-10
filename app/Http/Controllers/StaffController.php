@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class StaffController extends Controller
 {
@@ -73,23 +74,23 @@ class StaffController extends Controller
 
 		$responses = file_get_contents($url, true);
 		$responseshow = json_decode($responses);
-		// $x = 0;
-		// foreach ($responseshow as $key => $value) {
-		// 	dd($value);
-		// 	$x++;
-		// }
+		$x = 0;
+		foreach ($responseshow as $key => $value) {
+			$from= (Carbon::createFromTimestamp($value->start)->addhours(8)->toDayDateTimeString());
+			$to= (Carbon::createFromTimestamp($value->finish)->addhours(8)->toDayDateTimeString());
+			$x++;
+		}
+		// dd($from, $to);
 
-
-		//return view('tables_dynamic')->with(compact('responseshow', 'response'));
-
-                
-
-
+		//return view('tables_dynamic')->with(compact('responseshow', 'response', '$from', '$to'));
 
 
 
 
-		return view('schedule', compact('responseshow'));
+
+
+
+		return view('schedule', compact('responseshow', 'from', 'to'));
 
 	}
 
