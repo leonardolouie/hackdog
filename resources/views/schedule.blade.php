@@ -96,107 +96,8 @@
       </div>
 
       <!-- top navigation -->
-      <div class="top_nav">
-        <div class="nav_menu">
-          <nav>
-            <div class="nav toggle">
-              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="">
-                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">{{Auth::user()->firstName}} &nbsp {{Auth::user()->lastName}}
-                  <span class=" fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  <li><a href="javascript:;"> Profile</a></li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="badge bg-red pull-right">50%</span>
-                      <span>Settings</span>
-                    </a>
-                  </li>
-                  <li><a href="javascript:;">Help</a></li>
-                  <li><a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                   document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
-                 </a></li>
-                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </ul>
-            </li>
-
-            <li role="presentation" class="dropdown">
-              <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-envelope-o"></i>
-                <span class="badge bg-green">6</span>
-              </a>
-              <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                <li>
-                  <a>
-                    <span class="image"><img src="{{asset('hackdog/images/img.jpg')}}" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="{{asset('hackdog/images/img.jpg')}}" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="{{asset('hackdog/images/img.jpg')}}" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a>
-                    <span class="image"><img src="{{asset('hackdog/images/img.jpg')}}" alt="Profile Image" /></span>
-                    <span>
-                      <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                    </span>
-                    <span class="message">
-                      Film festivals used to be do-or-die moments for movie makers. They were where...
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <div class="text-center">
-                    <a>
-                      <strong>See All Alerts</strong>
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+        @if(empty($responsesshow))
+   
     <!-- /top navigation -->
 
     <!-- page content -->
@@ -205,7 +106,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2>Staff</small></h2>
+            <h2>Schedule</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li style="float: right;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -214,51 +115,44 @@
           </div>
           <div class="x_content">
 
-            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-              <thead>
-                <tr>
 
-                 <th>Actions</th>
-                 <th>Name</th>
-                 <th>Passcode</th>
-                 <th>User Level</th>
-                 <th>Email</th>
-                 <th>Phone Number</th>
-               
-               </tr>
-             </thead>
-
-
-             <tbody>
-               @foreach($response as $response)
-               <tr>
-                 <td> <a href="user_details/{{$response->id}}"> <i class="">Show Schedule</i></a></td>
-
-                 <td>{{$response->name}}</td>
-                 <td>{{$response->passcode}}</td>
-                 <td>@if(count($response->user_levels)==3)
-                  {{$response->user_levels[0]}},
-                  {{$response->user_levels[1]}},
-                  {{$response->user_levels[2]}}
-                  @elseif(count($response->user_levels)==2)
-                  {{$response->user_levels[0]}},
-                  {{$response->user_levels[1]}}
-                  @else
-                  {{$response->user_levels[0]}}
-
-
-                @endif</td>
-                <td>{{$response->email}}</td>
-                <td>{{$response->phone}}</td>
-                
-              </tr>
-
-              @endforeach
+                <table id="datatable" class="table table-striped table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th></th> 
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th> 
+                    </tr>
+                  </thead>
+                  <tr>
+                    <th></th>
+                  
+                    @foreach($responseshow as $response)
+                    <th>
+                      <div class="container-fluid alert alert-info text-center responsive" style="height: 200px; width: 130px;">
+                        <p style="color:green"> START </p>
+                        <p>{{date(" D M/d/Y H:i:s ",$response->start)}}</p>
+                         <p style="color:RED"> FINISH </p>
+                        <p>{{date(" D M/d/Y H:i:s ",$response->finish)}}</p>
+                        
+                      </div>
+                    </th>
+                 
+                    @endforeach
+                  </tr>
+                  <tbody>
+                  </tbody>
+                </table>
+                @elseif(empty($responseshow))
+                <h1>No schedule(s) found!</h1>
+                @endif
+              </div>
 
 
-
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

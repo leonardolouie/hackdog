@@ -12,19 +12,39 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
-
-Auth::routes();
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
+    return view('index');
+})->middleware('auth');
 
 Route::get('/homepage', function () {
     return view('index');
 })->middleware('auth')->name('index');
 
-Route::get('/table', function () {
-    return view('tables_dynamic');
-})->middleware('auth')->name('table');
+
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/table', 'StaffController@index')->middleware('auth')->name('table');
+Route::get('user_details/{id}' , 'StaffController@show')->middleware('auth')->name('staff.show');
+Route::post('user_details/schedules', 'StaffController@search')->middleware('auth')->name('schedules');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

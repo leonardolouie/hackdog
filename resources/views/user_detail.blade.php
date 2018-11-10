@@ -9,6 +9,8 @@
 
   <title>Ant Man </title>
 
+  <!-- jQuery -->
+  <script src="{{asset('hackdog/vendors/jquery/dist/jquery.min.js')}}"></script>
   <!-- Bootstrap -->
   <link href="{{asset('hackdog/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Font Awesome -->
@@ -202,81 +204,142 @@
     <!-- page content -->
     <div class="right_col" role="main">
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            <h2>Staff</small></h2>
-            <ul class="nav navbar-right panel_toolbox">
-              <li style="float: right;"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
-            </ul>
-            <div class="clearfix"></div>
+
+
+      <div class="container" style="margin-bottom: 10px;">
+        <div class="row">
+          <div class="col-lg-3">
           </div>
-          <div class="x_content">
-
-            <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
-              <thead>
-                <tr>
-
-                 <th>Actions</th>
-                 <th>Name</th>
-                 <th>Passcode</th>
-                 <th>User Level</th>
-                 <th>Email</th>
-                 <th>Phone Number</th>
-               
-               </tr>
-             </thead>
-
-
-             <tbody>
-               @foreach($response as $response)
-               <tr>
-                 <td> <a href="user_details/{{$response->id}}"> <i class="">Show Schedule</i></a></td>
-
-                 <td>{{$response->name}}</td>
-                 <td>{{$response->passcode}}</td>
-                 <td>@if(count($response->user_levels)==3)
-                  {{$response->user_levels[0]}},
-                  {{$response->user_levels[1]}},
-                  {{$response->user_levels[2]}}
-                  @elseif(count($response->user_levels)==2)
-                  {{$response->user_levels[0]}},
-                  {{$response->user_levels[1]}}
-                  @else
-                  {{$response->user_levels[0]}}
-
-
-                @endif</td>
-                <td>{{$response->email}}</td>
-                <td>{{$response->phone}}</td>
-                
-              </tr>
-
-              @endforeach
-
-
-
-            </tbody>
-          </table>
+          <div class="col-lg-6">
+           Name: <input type=" text" name="" class="form-control" value="{{$response->name}}">
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="container"  style="margin-bottom: 10px;">
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-3">
+           Position: <input type=" text" name="" class="form-control">
+          </div>
+          <div class="col-lg-3">
+           Passcode: <input type="text" name="" class="form-control" value="{{$response->passcode}}">
+          </div>
+        </div>
+      </div>
+       <div class="container" style="margin-bottom: 10px;" value="{{$response->user_levels[0]}}">
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-6">
+           Phone Number: <input type=" text" name="" class="form-control" value="{{$response->phone}}">
+          </div>
+        </div>
+      </div>
+        <div class="container" style="margin-bottom: 30px;">
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-6">
+           Email: <input type=" text" name="" class="form-control" value="{{$response->email}}">
+          </div>
+        </div>
+      </div>
 
 
+
+
+
+
+     <form method="POST" action="schedules">
+      @csrf
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+          </div>
+          <div class="col-lg-3">
+            To:<input type="date" name="from" id="from" class="form-control" required>
+          </div>
+          <div class="col-lg-3">
+            From:<input type="date" name="to" id="to" class="form-control" required>
+            <input type="hidden" name="user_id" class="form-control" value="{{$response->id}}">
+            <br>  
+
+            <button type="submit" class="btn btn-primary" style="float: right;" >View Schedule</button>
+
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+      <div class="pull-right">
+        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
   </div>
-  <!-- /page content -->
+</div>
 
-  <!-- footer content -->
-  <footer>
-    <div class="pull-right">
-      Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-    </div>
-    <div class="clearfix"></div>
-  </footer>
-  <!-- /footer content -->
-</div>
-</div>
+<script>
+
+/*
+$('#send_date').click(function(){
+
+  var initDate = $('#from').val();
+  var endDate = $('#to').val();
+
+  alert(initDate +" "+ endDate);s
+
+  $.ajax({
+
+      url:schedule,
+      header:,
+      method: POST,
+      data:{from:initDate,to:endDate},
+      success:function(){
+
+      },
+      error:function(){
+
+      }
+
+  });
+
+
+});*/
+
+
+
+
+
+
+
+</script>
+
+
 
 <!-- jQuery -->
 <script src="{{asset('hackdog/vendors/jquery/dist/jquery.min.js')}}"></script>
